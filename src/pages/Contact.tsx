@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import PageTransition from '@/components/PageTransition';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import DynamicButton from '@/components/DynamicButton';
+import PulsingCard from '@/components/PulsingCard';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -89,9 +90,15 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
+              whileHover={{
+                scale: 1.05,
+                textShadow: '0 0 20px rgba(59,130,246,0.6)'
+              }}
+            >
               Get In Touch
-            </h1>
+            </motion.h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? I'd love to hear from you. 
               Let's create something amazing together!
@@ -110,25 +117,26 @@ const Contact = () => {
                 <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <motion.a
+                    <PulsingCard
                       key={info.title}
-                      href={info.link}
-                      target={info.link.startsWith('http') ? '_blank' : undefined}
-                      rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-4 p-4 rounded-lg glass dark:glass-dark hover:bg-primary/5 transition-all duration-300 group"
+                      title={info.title}
+                      delay={0.3 + index * 0.1}
                     >
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <info.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{info.title}</h3>
-                        <p className="text-muted-foreground">{info.value}</p>
-                      </div>
-                    </motion.a>
+                      <motion.a
+                        href={info.link}
+                        target={info.link.startsWith('http') ? '_blank' : undefined}
+                        rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        whileHover={{ x: 5 }}
+                        className="flex items-center gap-4 p-2 rounded-lg hover:bg-primary/5 transition-all duration-300 group"
+                      >
+                        <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                          <info.icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">{info.value}</p>
+                        </div>
+                      </motion.a>
+                    </PulsingCard>
                   ))}
                 </div>
               </div>
@@ -231,10 +239,10 @@ const Contact = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button type="submit" size="lg" className="w-full group">
+                      <DynamicButton type="submit" size="lg" className="w-full">
                         <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                         Send Message
-                      </Button>
+                      </DynamicButton>
                     </motion.div>
                   </form>
                 </CardContent>
@@ -250,16 +258,18 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-center mt-20"
           >
-            <Card className="border-0 shadow-xl glass dark:glass-dark p-8">
-              <h3 className="text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+            <PulsingCard
+              title="Ready to Join FES NSUT?"
+              className="border-0 shadow-xl p-8"
+            >
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Whether you need a website, web application, or mobile app, I'm here to help 
-                bring your ideas to life with modern technologies and best practices.
+                Whether you want to enhance your financial knowledge or contribute to our society, 
+                we're here to help you grow in the world of finance and economics.
               </p>
-              <Button size="lg" variant="outline">
-                Schedule a Call
-              </Button>
-            </Card>
+              <DynamicButton size="lg" variant="outline">
+                Schedule a Meeting
+              </DynamicButton>
+            </PulsingCard>
           </motion.div>
         </div>
       </div>

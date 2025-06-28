@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isGlowing, setIsGlowing] = useState(false);
   const location = useLocation();
 
   const navItems = [
@@ -26,16 +27,29 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link 
+            to="/" 
+            className="flex items-center space-x-2 group"
+            onClick={() => setIsGlowing(!isGlowing)}
+          >
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
               <TrendingUp className="h-8 w-8 text-primary" />
             </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <motion.span 
+              className={`text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent transition-all duration-500 ${
+                isGlowing ? 'drop-shadow-[0_0_15px_rgba(59,130,246,0.8)] scale-110' : 'hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]'
+              }`}
+              animate={{
+                scale: isGlowing ? [1, 1.1, 1] : 1,
+                textShadow: isGlowing ? '0 0 20px rgba(59,130,246,0.8)' : '0 0 0px rgba(59,130,246,0)'
+              }}
+              transition={{ duration: 0.3 }}
+            >
               FES NSUT
-            </span>
+            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}

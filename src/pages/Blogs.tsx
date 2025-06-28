@@ -1,10 +1,11 @@
-
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { BookOpen, Download, ExternalLink, Calendar, TrendingUp, DollarSign, PieChart } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
+import DynamicButton from '@/components/DynamicButton';
+import PulsingCard from '@/components/PulsingCard';
 
 const Resources = () => {
   const resources = [
@@ -77,9 +78,15 @@ const Resources = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
+              whileHover={{
+                scale: 1.05,
+                textShadow: '0 0 20px rgba(59,130,246,0.6)'
+              }}
+            >
               Financial Resources
-            </h1>
+            </motion.h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Access our curated collection of financial education materials, research papers, 
               and learning resources to enhance your understanding of finance and economics.
@@ -94,62 +101,51 @@ const Resources = () => {
             className="flex flex-wrap justify-center gap-2 mb-12"
           >
             {categories.map((category) => (
-              <Button
+              <DynamicButton
                 key={category}
                 variant="outline"
                 size="sm"
                 className="hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 {category}
-              </Button>
+              </DynamicButton>
             ))}
           </motion.div>
 
           {/* Resources Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resources.map((resource, index) => (
-              <motion.div
+              <PulsingCard
                 key={resource.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                title={resource.title}
+                description={resource.description}
+                delay={index * 0.1}
               >
-                <Card className="h-full glass dark:glass-dark border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <div className={`p-2 rounded-lg ${resource.color} text-white`}>
-                        <resource.icon className="h-5 w-5" />
-                      </div>
-                      <Badge variant="secondary" className="text-xs">
-                        {resource.type}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg mb-2">{resource.title}</CardTitle>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Calendar className="h-4 w-4" />
-                      {resource.date}
-                    </div>
-                    <Badge variant="outline" className="w-fit">
-                      {resource.category}
-                    </Badge>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="mb-4">
-                      {resource.description}
-                    </CardDescription>
-                    <div className="flex gap-2">
-                      <Button size="sm" className="flex-1">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`p-2 rounded-lg ${resource.color} text-white`}>
+                    <resource.icon className="h-5 w-5" />
+                  </div>
+                  <Badge variant="secondary" className="text-xs">
+                    {resource.type}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                  <Calendar className="h-4 w-4" />
+                  {resource.date}
+                </div>
+                <Badge variant="outline" className="w-fit mb-4">
+                  {resource.category}
+                </Badge>
+                <div className="flex gap-2 mt-4">
+                  <DynamicButton size="sm" className="flex-1">
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </DynamicButton>
+                  <DynamicButton size="sm" variant="outline">
+                    <ExternalLink className="h-4 w-4" />
+                  </DynamicButton>
+                </div>
+              </PulsingCard>
             ))}
           </div>
 
@@ -160,20 +156,16 @@ const Resources = () => {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="text-center mt-16"
           >
-            <Card className="max-w-2xl mx-auto glass dark:glass-dark border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl">Need More Resources?</CardTitle>
-                <CardDescription>
-                  Can't find what you're looking for? Reach out to us and we'll help you find the right materials.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button size="lg" className="w-full sm:w-auto">
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Request Resources
-                </Button>
-              </CardContent>
-            </Card>
+            <PulsingCard
+              title="Need More Resources?"
+              description="Can't find what you're looking for? Reach out to us and we'll help you find the right materials."
+              className="max-w-2xl mx-auto"
+            >
+              <DynamicButton size="lg" className="w-full sm:w-auto">
+                <BookOpen className="mr-2 h-5 w-5" />
+                Request Resources
+              </DynamicButton>
+            </PulsingCard>
           </motion.div>
         </div>
       </div>

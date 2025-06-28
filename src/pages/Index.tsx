@@ -1,7 +1,5 @@
-
 import { motion } from 'framer-motion';
 import { ChevronDown, Users, Calendar, BookOpen, TrendingUp, Award, Target } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProjectCard from '@/components/ProjectCard';
 import PageTransition from '@/components/PageTransition';
@@ -9,6 +7,9 @@ import FloatingCurrency from '@/components/FloatingCurrency';
 import StockTicker from '@/components/StockTicker';
 import FinancialMetrics from '@/components/FinancialMetrics';
 import CryptoWidget from '@/components/CryptoWidget';
+import DynamicButton from '@/components/DynamicButton';
+import PulsingCard from '@/components/PulsingCard';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Index = () => {
   const events = [
@@ -45,6 +46,13 @@ const Index = () => {
     { name: "Financial Literacy Programs", icon: BookOpen, description: "Educate students about personal finance and economics" }
   ];
 
+  const stats = [
+    { number: 250, suffix: '+', label: 'Active Members' },
+    { number: 50, suffix: '+', label: 'Events Conducted' },
+    { number: 15, suffix: '+', label: 'Industry Partners' },
+    { number: 95, suffix: '%', label: 'Placement Rate' }
+  ];
+
   return (
     <PageTransition>
       <div className="min-h-screen">
@@ -67,6 +75,10 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                whileHover={{
+                  scale: 1.05,
+                  textShadow: '0 0 30px rgba(59,130,246,0.8)'
+                }}
               >
                 FES NSUT
               </motion.h1>
@@ -94,13 +106,13 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <Button size="lg" className="group">
+                <DynamicButton size="lg">
                   <Users className="mr-2 h-5 w-5 group-hover:animate-bounce" />
                   Join FES
-                </Button>
-                <Button variant="outline" size="lg" asChild>
+                </DynamicButton>
+                <DynamicButton variant="outline" size="lg" asChild>
                   <a href="#events">View Events</a>
-                </Button>
+                </DynamicButton>
               </motion.div>
               
               <motion.div 
@@ -141,6 +153,42 @@ const Index = () => {
           >
             <ChevronDown className="h-8 w-8 text-muted-foreground" />
           </motion.div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-16 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
+              <p className="text-lg text-muted-foreground">Making a difference in financial education</p>
+            </motion.div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+              {stats.map((stat, index) => (
+                <PulsingCard
+                  key={stat.label}
+                  title=""
+                  delay={index * 0.2}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl mb-2">
+                    <AnimatedCounter 
+                      target={stat.number} 
+                      suffix={stat.suffix}
+                      className="text-2xl md:text-3xl"
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </PulsingCard>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Financial Metrics Section */}
@@ -196,26 +244,17 @@ const Index = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {activities.map((activity, index) => (
-                <motion.div
+                <PulsingCard
                   key={activity.name}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  title={activity.name}
+                  description={activity.description}
+                  delay={index * 0.1}
+                  className="text-center"
                 >
-                  <Card className="text-center h-full glass dark:glass-dark border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <CardHeader>
-                      <div className="mx-auto mb-4 p-3 rounded-full bg-primary/10">
-                        <activity.icon className="h-8 w-8 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg">{activity.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription>{activity.description}</CardDescription>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  <div className="mx-auto mb-4 p-3 rounded-full bg-primary/10">
+                    <activity.icon className="h-8 w-8 text-primary" />
+                  </div>
+                </PulsingCard>
               ))}
             </div>
           </div>
