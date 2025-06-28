@@ -24,8 +24,8 @@ const PulsingCard = ({ title, description, children, className = '', delay = 0 }
       transition={{ 
         duration: 0.6, 
         delay,
-        hover: { duration: 0.3 }
       }}
+      whileHoverTransition={{ duration: 0.3 }}
       viewport={{ once: true }}
       className={className}
     >

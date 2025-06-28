@@ -1,11 +1,14 @@
+
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Download, ExternalLink, Calendar, TrendingUp, DollarSign, PieChart } from 'lucide-react';
+import { BookOpen, Download, ExternalLink, Calendar, TrendingUp, DollarSign, PieChart, Banknote } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import DynamicButton from '@/components/DynamicButton';
 import PulsingCard from '@/components/PulsingCard';
+import FloatingCurrency from '@/components/FloatingCurrency';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Resources = () => {
   const resources = [
@@ -67,10 +70,64 @@ const Resources = () => {
 
   const categories = ['All', 'Investment', 'Personal Finance', 'Crypto', 'Analysis', 'Career'];
 
+  const resourceStats = [
+    { value: 50, suffix: '+', label: 'Resources Available', icon: BookOpen },
+    { value: 1000, suffix: '+', label: 'Downloads', icon: Download },
+    { value: 25, suffix: '', label: 'Categories', icon: PieChart }
+  ];
+
   return (
     <PageTransition>
-      <div className="min-h-screen pt-20">
-        <div className="container mx-auto px-4 py-16">
+      <FloatingCurrency />
+      <div className="min-h-screen pt-20 relative">
+        {/* Financial floating elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div
+            className="absolute top-40 right-16 text-7xl text-yellow-500/20"
+            animate={{ 
+              rotate: [0, 180, 360], 
+              scale: [1, 1.3, 1],
+              y: [0, -15, 0]
+            }}
+            transition={{ duration: 10, repeat: Infinity }}
+          >
+            💰
+          </motion.div>
+          <motion.div
+            className="absolute top-1/2 left-10 text-6xl text-green-500/25"
+            animate={{ 
+              x: [0, 20, -20, 0], 
+              rotate: [0, 10, -10, 0],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          >
+            $
+          </motion.div>
+          <motion.div
+            className="absolute bottom-1/3 right-1/4 text-5xl text-blue-500/25"
+            animate={{ 
+              y: [0, -25, 0], 
+              rotate: [0, -20, 20, 0]
+            }}
+            transition={{ duration: 7, repeat: Infinity }}
+          >
+            ₹
+          </motion.div>
+          <motion.div
+            className="absolute top-1/4 left-1/3 text-4xl text-purple-500/20"
+            animate={{ 
+              scale: [1, 1.4, 1], 
+              rotate: [0, 360],
+              opacity: [0.2, 0.6, 0.2]
+            }}
+            transition={{ duration: 6, repeat: Infinity }}
+          >
+            📈
+          </motion.div>
+        </div>
+
+        <div className="container mx-auto px-4 py-16 relative z-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -91,6 +148,32 @@ const Resources = () => {
               Access our curated collection of financial education materials, research papers, 
               and learning resources to enhance your understanding of finance and economics.
             </p>
+          </motion.div>
+
+          {/* Resource Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          >
+            {resourceStats.map((stat, index) => (
+              <PulsingCard
+                key={stat.label}
+                title={stat.label}
+                delay={0.1 * index}
+                className="text-center"
+              >
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <stat.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="text-3xl font-bold text-primary">
+                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                  </div>
+                </div>
+              </PulsingCard>
+            ))}
           </motion.div>
 
           {/* Category Filter */}

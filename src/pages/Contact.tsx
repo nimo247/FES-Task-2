@@ -1,5 +1,6 @@
+
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, DollarSign, TrendingUp, Banknote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,6 +11,7 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import DynamicButton from '@/components/DynamicButton';
 import PulsingCard from '@/components/PulsingCard';
+import FloatingCurrency from '@/components/FloatingCurrency';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -79,10 +81,42 @@ const Contact = () => {
     }
   ];
 
+  const financialStats = [
+    { icon: DollarSign, value: "500+", label: "Members", color: "text-green-500" },
+    { icon: TrendingUp, value: "50+", label: "Events", color: "text-blue-500" },
+    { icon: Banknote, value: "25+", label: "Workshops", color: "text-purple-500" }
+  ];
+
   return (
     <PageTransition>
-      <div className="min-h-screen pt-24 pb-16">
-        <div className="container mx-auto px-4">
+      <FloatingCurrency />
+      <div className="min-h-screen pt-24 pb-16 relative">
+        {/* Financial floating elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div
+            className="absolute top-32 left-10 text-6xl text-primary/20"
+            animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          >
+            💰
+          </motion.div>
+          <motion.div
+            className="absolute top-1/3 right-20 text-5xl text-green-500/30"
+            animate={{ y: [0, -20, 0], rotate: [0, 15, -15, 0] }}
+            transition={{ duration: 6, repeat: Infinity }}
+          >
+            $
+          </motion.div>
+          <motion.div
+            className="absolute bottom-1/4 left-1/4 text-4xl text-blue-500/30"
+            animate={{ x: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+            transition={{ duration: 5, repeat: Infinity }}
+          >
+            ₹
+          </motion.div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -103,6 +137,30 @@ const Contact = () => {
               Have a project in mind or want to collaborate? I'd love to hear from you. 
               Let's create something amazing together!
             </p>
+          </motion.div>
+
+          {/* Financial Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          >
+            {financialStats.map((stat, index) => (
+              <PulsingCard
+                key={stat.label}
+                title={stat.value}
+                description={stat.label}
+                delay={0.1 * index}
+                className="text-center"
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <stat.icon className={`h-8 w-8 ${stat.color}`} />
+                  </div>
+                </div>
+              </PulsingCard>
+            ))}
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -239,7 +297,7 @@ const Contact = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <DynamicButton type="submit" size="lg" className="w-full">
+                      <DynamicButton size="lg" className="w-full">
                         <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                         Send Message
                       </DynamicButton>
