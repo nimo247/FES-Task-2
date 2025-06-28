@@ -1,5 +1,6 @@
+
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail, Code2, Database, Smartphone, Globe } from 'lucide-react';
+import { ChevronDown, Users, Calendar, BookOpen, TrendingUp, Award, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProjectCard from '@/components/ProjectCard';
@@ -10,38 +11,38 @@ import FinancialMetrics from '@/components/FinancialMetrics';
 import CryptoWidget from '@/components/CryptoWidget';
 
 const Index = () => {
-  const projects = [
+  const events = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration and admin dashboard",
-      image: "photo-1556742049-0cfed4f6a45d",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      title: "Stock Market Workshop",
+      description: "Learn the fundamentals of stock market investing and technical analysis",
+      image: "photo-1611974789855-9c2a0a7236a3",
+      technologies: ["Trading", "Technical Analysis", "Investment", "Risk Management"],
+      githubUrl: "#",
+      liveUrl: "#"
     },
     {
-      title: "Task Management App",
-      description: "Collaborative task management with real-time updates and team features",
-      image: "photo-1611224923853-80b023f02d71",
-      technologies: ["Next.js", "TypeScript", "PostgreSQL", "Socket.io"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      title: "FinTech Innovation Summit",
+      description: "Explore the latest trends in financial technology and digital banking",
+      image: "photo-1559526324-4b87b5e36e44",
+      technologies: ["Blockchain", "Digital Banking", "AI in Finance", "Cryptocurrencies"],
+      githubUrl: "#",
+      liveUrl: "#"
     },
     {
-      title: "Weather Dashboard",
-      description: "Beautiful weather app with forecasts and interactive maps",
-      image: "photo-1504608524841-42fe6f032b4b",
-      technologies: ["React", "OpenWeather API", "Chart.js", "Tailwind"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      title: "Corporate Finance Case Study",
+      description: "Analyze real-world corporate finance scenarios and investment decisions",
+      image: "photo-1454165804606-c3d57bc86b40",
+      technologies: ["Valuation", "M&A", "Financial Modeling", "Corporate Strategy"],
+      githubUrl: "#",
+      liveUrl: "#"
     }
   ];
 
-  const skills = [
-    { name: "Frontend Development", icon: Code2, description: "React, Next.js, Vue.js, TypeScript" },
-    { name: "Backend Development", icon: Database, description: "Node.js, Python, PostgreSQL, MongoDB" },
-    { name: "Mobile Development", icon: Smartphone, description: "React Native, Flutter, iOS, Android" },
-    { name: "Web Technologies", icon: Globe, description: "HTML5, CSS3, JavaScript, REST APIs" }
+  const activities = [
+    { name: "Weekly Market Updates", icon: TrendingUp, description: "Stay updated with market trends and analysis" },
+    { name: "Guest Lectures", icon: Users, description: "Industry experts share insights and experiences" },
+    { name: "Investment Competitions", icon: Award, description: "Test your investment skills in simulated markets" },
+    { name: "Financial Literacy Programs", icon: BookOpen, description: "Educate students about personal finance and economics" }
   ];
 
   return (
@@ -75,7 +76,7 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Full Stack Developer & Technology Enthusiast
+                Financial Economics Society
               </motion.p>
               <motion.p 
                 className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto"
@@ -83,8 +84,8 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                Creating innovative digital solutions with cutting-edge technologies. 
-                Passionate about building scalable applications and solving complex problems.
+                Empowering students at NSUT Delhi with financial knowledge, market insights, and economic understanding. 
+                Join us to explore the world of finance, investments, and economic analysis.
               </motion.p>
               
               <motion.div 
@@ -94,11 +95,11 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 <Button size="lg" className="group">
-                  <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-                  Download Resume
+                  <Users className="mr-2 h-5 w-5 group-hover:animate-bounce" />
+                  Join FES
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <a href="#projects">View Projects</a>
+                  <a href="#events">View Events</a>
                 </Button>
               </motion.div>
               
@@ -108,34 +109,27 @@ const Index = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 1 }}
               >
-                <motion.a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 >
-                  <Github className="h-6 w-6" />
-                </motion.a>
-                <motion.a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <Target className="h-6 w-6" />
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 >
-                  <Linkedin className="h-6 w-6" />
-                </motion.a>
-                <motion.a
-                  href="mailto:contact@example.com"
+                  <TrendingUp className="h-6 w-6" />
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 >
-                  <Mail className="h-6 w-6" />
-                </motion.a>
+                  <BookOpen className="h-6 w-6" />
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
@@ -159,16 +153,16 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Financial Overview</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Market Insights</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Real-time financial metrics and investment portfolio performance
+                Real-time financial metrics and market data analysis for educational purposes
               </p>
             </motion.div>
             <FinancialMetrics />
           </div>
         </section>
 
-        {/* Crypto & About Section */}
+        {/* About & Crypto Section */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
@@ -180,12 +174,18 @@ const Index = () => {
                   viewport={{ once: true }}
                   className="mb-8"
                 >
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
+                  <h2 className="text-4xl md:text-5xl font-bold mb-6">About FES NSUT</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    The Financial Economics Society at Netaji Subhas University of Technology (NSUT) 
+                    is a student-driven organization dedicated to fostering financial literacy and 
+                    economic understanding among students. We bridge the gap between academic theory 
+                    and real-world financial applications.
+                  </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    I'm a passionate full-stack developer and financial technology enthusiast from NSUT 
-                    (Netaji Subhas University of Technology) with expertise in modern web technologies 
-                    and fintech solutions. I love creating user-centric financial applications 
-                    that solve real-world problems and deliver exceptional user experiences in the finance sector.
+                    Our mission is to create a community of financially aware individuals who can 
+                    make informed decisions about investments, career choices, and economic trends. 
+                    Through workshops, seminars, and hands-on activities, we prepare students for 
+                    the dynamic world of finance.
                   </p>
                 </motion.div>
               </div>
@@ -195,9 +195,9 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {skills.map((skill, index) => (
+              {activities.map((activity, index) => (
                 <motion.div
-                  key={skill.name}
+                  key={activity.name}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -207,12 +207,12 @@ const Index = () => {
                   <Card className="text-center h-full glass dark:glass-dark border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                     <CardHeader>
                       <div className="mx-auto mb-4 p-3 rounded-full bg-primary/10">
-                        <skill.icon className="h-8 w-8 text-primary" />
+                        <activity.icon className="h-8 w-8 text-primary" />
                       </div>
-                      <CardTitle className="text-lg">{skill.name}</CardTitle>
+                      <CardTitle className="text-lg">{activity.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription>{skill.description}</CardDescription>
+                      <CardDescription>{activity.description}</CardDescription>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -221,8 +221,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-20">
+        {/* Events Section */}
+        <section id="events" className="py-20">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -231,15 +231,15 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Featured Projects</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Upcoming Events</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Here are some of my recent projects that showcase my skills and creativity
+                Join our educational events, workshops, and competitions to enhance your financial knowledge
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <ProjectCard key={project.title} {...project} index={index} />
+              {events.map((event, index) => (
+                <ProjectCard key={event.title} {...event} index={index} />
               ))}
             </div>
           </div>

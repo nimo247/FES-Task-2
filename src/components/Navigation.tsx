@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X, TrendingUp } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 
@@ -12,7 +12,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/blogs', label: 'Blogs' },
+    { path: '/blogs', label: 'Resources' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -31,7 +31,7 @@ const Navigation = () => {
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
-              <Code2 className="h-8 w-8 text-primary" />
+              <TrendingUp className="h-8 w-8 text-primary" />
             </motion.div>
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               FES NSUT
