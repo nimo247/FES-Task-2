@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail, Code2, Database, Smartphone, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import ProjectCard from '@/components/ProjectCard';
 import PageTransition from '@/components/PageTransition';
 import FloatingCurrency from '@/components/FloatingCurrency';
+import StockTicker from '@/components/StockTicker';
+import FinancialMetrics from '@/components/FinancialMetrics';
+import CryptoWidget from '@/components/CryptoWidget';
 
 const Index = () => {
   const projects = [
@@ -46,6 +48,9 @@ const Index = () => {
     <PageTransition>
       <div className="min-h-screen">
         <FloatingCurrency />
+        
+        {/* Stock Ticker */}
+        <StockTicker />
         
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -144,8 +149,8 @@ const Index = () => {
           </motion.div>
         </section>
 
-        {/* About Section */}
-        <section className="py-20 bg-muted/30">
+        {/* Financial Metrics Section */}
+        <section className="py-20 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -154,13 +159,40 @@ const Index = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                I'm a passionate full-stack developer from NSUT (Netaji Subhas University of Technology) 
-                with expertise in modern web technologies. I love creating user-centric applications 
-                that solve real-world problems and deliver exceptional user experiences.
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Financial Overview</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Real-time financial metrics and investment portfolio performance
               </p>
             </motion.div>
+            <FinancialMetrics />
+          </div>
+        </section>
+
+        {/* Crypto & About Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              <div className="lg:col-span-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="mb-8"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    I'm a passionate full-stack developer and financial technology enthusiast from NSUT 
+                    (Netaji Subhas University of Technology) with expertise in modern web technologies 
+                    and fintech solutions. I love creating user-centric financial applications 
+                    that solve real-world problems and deliver exceptional user experiences in the finance sector.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="lg:col-span-1">
+                <CryptoWidget />
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {skills.map((skill, index) => (
