@@ -44,6 +44,8 @@ These are some preview of my project
 
 2.Resource Page
 
+![image](https://github.com/user-attachments/assets/022e62f5-2cf4-4384-a82d-8d26e82c9738)
+
 ![image](https://github.com/user-attachments/assets/ed5d38f0-c66e-46f4-84de-6e1d358f52f0)
 
 3.Contact Page
