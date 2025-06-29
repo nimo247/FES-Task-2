@@ -40,8 +40,6 @@ These are some preview of my project
 
 ![image](https://github.com/user-attachments/assets/29fdce27-271f-44e1-a51e-27e85bb1fc64)
 
-![image](https://github.com/user-attachments/assets/1973838b-a1b0-44e5-96e0-ac0cc9a3a581)
-
 ![image](https://github.com/user-attachments/assets/e2f7e6ae-6831-41e4-8553-c58c0dbec0f2)
 
 2.Resource Page
