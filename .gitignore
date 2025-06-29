@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Node modules
+node_modules/
+
+# Bun
+bun.lockb
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+
+# IDE/Editor
+.vscode/
+.DS_Store
+
